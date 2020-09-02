@@ -1,0 +1,86 @@
+.upcomingEvents__leftControl, .upcomingEvents__rightControl {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 48%;
+}
+
+.upcomingEvents__rightControl {
+    right: 0;
+}
+
+.upcomingEvents__leftControl {
+    left: 0;
+}
+
+.upcomingEvents__image {
+    height: 500px;
+    width: auto;
+    transition: .3s left ease-in, .3s transform ease-in, .5s opacity ease-in-out;
+}
+
+.active-event {
+    position: relative;
+    width: 70%;
+    left: 15%;
+    transform: scale(1);
+    z-index: 2;
+}
+
+.prev, .next {
+    width: 70%;
+    opacity: .2;
+    position: absolute;
+    transform: scale(.9);
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    left: 30%;
+}
+
+.hidden-event {
+    position: absolute;
+    left: 15%;
+    opacity: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 575px) {
+
+    .upcomingEvents__rightControl, .upcomingEvents__leftControl {
+        display: none;
+    }
+
+    .upcomingEvents__image {
+        height: 200px;
+    }
+
+    .active-event {
+        width: 90%;
+        left: 5%;
+    }
+
+    .hidden-event {
+        left: 5%;
+    }
+
+    .prev, .next {
+        width: 90%;
+    }
+    
+    .prev {
+        left: -5%;
+    }
+    
+    .next {
+        left: 15%;
+    }
+
+}

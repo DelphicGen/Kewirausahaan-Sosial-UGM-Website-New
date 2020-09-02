@@ -1,0 +1,14 @@
+.moreDetailsBtn {
+    background-color: #FFAD08;
+    border-radius: 5px;
+}
+
+.moreDetailsBtn:hover, .moreDetailsBtn:focus {
+    background: #FFAD08 radial-gradient(circle, transparent 1%, #FFAD08 1%) center/15000%;
+}
+
+.moreDetailsBtn:active {
+    background-color: #f0d803 !important;
+    background-size: 100%;
+    transition: background 0s;
+}

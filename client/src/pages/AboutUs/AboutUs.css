@@ -1,0 +1,37 @@
+.aboutUs__details {
+    font-size: 16px;
+}
+
+.aboutUs__statistic {
+    background-color: #4E3D42;
+    width: 200px;
+    height: 200px;
+}
+
+.aboutUs__statistic img {
+    width: auto;
+    height: 50.44px;
+    margin: 0 auto;
+}
+
+.aboutUs__statistic h4 {
+    font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+    .aboutUs__statistic {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .aboutUs__statistics div:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .aboutUs__statistics div:nth-child(4) {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,13 @@
+.sectionHeader {
+    width: fit-content;
+    color: #4E3D42;
+}
+
+.sectionHeader::before {
+    content: "";
+    position: absolute;
+    width: 20%;
+    height: 5px;
+    background-color: #FFAD08;
+    bottom: 0;
+}

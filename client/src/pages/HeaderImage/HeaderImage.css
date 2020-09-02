@@ -1,0 +1,37 @@
+.headerImage {
+    background-image: url('../../images/header_image/header.webp');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.headerImage__filter {
+    background-color: rgba(43, 42, 42, .8);
+    min-height: 100%;
+}
+
+.headerImage__container {
+    display: table;
+    min-height: calc(100vh - 62.453px);
+}
+
+.headerImage__headingList {
+    display: table-cell !important;
+    vertical-align: middle;
+}
+
+.headerImage__mainHeader {
+    border-left: 5px solid #FFAD08;
+}
+
+@media screen and (max-width: 767px) {
+    .headerImage {
+        min-height: 600px;
+        height: auto;
+    }
+
+    .headerImage__container {
+        min-height: calc(600px - 62.453px);
+    }
+}

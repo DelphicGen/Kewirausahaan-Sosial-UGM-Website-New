@@ -1,0 +1,30 @@
+.latestEvent__event {
+    width: 48%;
+    height: 300px;
+}
+
+@media screen and (max-width: 991px) {
+    .latestEvent__event {
+        width: 80%;
+        height: 350px;
+        margin: 0 auto;
+    }
+
+    .latestEvent__event:not(:last-child) {
+        margin: 0 auto 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .latestEvent__event {
+        width: 90%;
+        height: 280px !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .latestEvent__event {
+        width: 100%;
+        height: 250px;
+    }
+}

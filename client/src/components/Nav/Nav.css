@@ -1,0 +1,47 @@
+.navbar__logo {
+    width: 150px;
+}
+
+.navbar__line {
+    margin: 4px 0;
+    width: 32px;
+    height: 3px;
+    transition: .25s ease-in-out;
+}
+
+.navbar__hamburger.open div:nth-child(1) {
+    top: 5px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+  
+.navbar__hamburger.open div:nth-child(2) {
+    opacity: 0;
+    left: 200px;
+}
+  
+.navbar__hamburger.open div:nth-child(3) {
+    top: -9px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.navbar__link, .navbar__link2 {
+    font-size: 16px;
+}
+
+.navbar__links2 {
+    left: -100vw;
+    max-height: 0;
+    transition: .5s all ease-in-out;   
+}
+
+.show {
+    max-height: 500vw;
+    left: 0;
+}
+
