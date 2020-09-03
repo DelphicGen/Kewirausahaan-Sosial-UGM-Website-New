@@ -1,0 +1,22 @@
+.review {
+    padding: 100px 0;
+    background-color: #4E3D42;
+}
+
+.carousel-item {
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.review__image {
+    width: 120px !important;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+}
+
+.review__content{
+    width: 80%;
+    margin: 60px auto;
+}

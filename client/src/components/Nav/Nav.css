@@ -1,10 +1,10 @@
 .navbar__logo {
-    width: 150px;
+    width: 130px;
 }
 
 .navbar__line {
     margin: 4px 0;
-    width: 32px;
+    width: 25px;
     height: 3px;
     transition: .25s ease-in-out;
 }

@@ -13,7 +13,7 @@
 
 .headerImage__container {
     display: table;
-    min-height: calc(100vh - 62.453px);
+    min-height: calc(100vh - 54.5px);
 }
 
 .headerImage__headingList {
@@ -32,6 +32,6 @@
     }
 
     .headerImage__container {
-        min-height: calc(600px - 62.453px);
+        min-height: calc(600px - 54.5px);
     }
 }

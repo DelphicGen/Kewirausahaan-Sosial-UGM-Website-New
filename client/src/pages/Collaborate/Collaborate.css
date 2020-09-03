@@ -1,0 +1,33 @@
+.collaborate__link {
+    color: #FFAD08;
+    font-size: 20px;
+}
+
+.ks-media p {
+    margin-top: 20px;
+}
+
+.collaborate__submit {
+    border-radius: 50px;
+    background-color: #FFAD08;
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.collaborate__submit:hover, .collaborate__submit:focus {
+    background: #FFAD08 radial-gradient(circle, transparent 1%, #FFAD08 1%) center/15000%;
+}
+
+.collaborate__submit:active {
+    background-color: #f0d803 !important;
+    background-size: 100%;
+    transition: background 0s;
+}
+
+@media screen and (max-width: 767px) {
+    .collaborate__media {
+        height: fit-content;
+        background-color: #4E3D42;
+        color: #FFAD08;
+    }
+}

@@ -1,12 +1,8 @@
-.lists_list {
-    width: calc(100% - 10px) !important;
+.person__header {
+    height: 250px;
 }
 
-.lists__header {
-    height: 300px;
-}
-
-.lists__image {
+.person__image {
     height: 100%;
     object-position: center !important;
     object-fit: cover !important;
@@ -16,14 +12,14 @@
     -o-transition: 0.3s all;
 }
 
-.lists__image:hover {
+.person__image:hover {
     transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
     -o-transform: scale(1.05);
 }
 
-.lists__image:hover + .lists__media, .lists__media:hover {
+.person__image:hover + .person__media, .person__media:hover {
     transform: scale(1);
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -31,7 +27,7 @@
     bottom: 0;
 }
 
-.lists__media {
+.person__media {
     background-color: rgba(1,4,6,0.45);
     transition: 0.3s all;
     -webkit-transition: 0.3s all;
@@ -44,13 +40,13 @@
     bottom: -100%;
 }
 
-.lists__media svg {
+.person__media svg {
     color: #fff;
     font-size: 20px;
     cursor: pointer;
 }
 
-.lists__details {
+.person__details {
     background-color: #FFAD08;
     height: 120px !important;
 }

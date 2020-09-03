@@ -5,7 +5,7 @@ import './HeaderImage.css';
 
 const HeaderImage = () => {
     return (
-        <div className="text-white min-h-full headerImage overflow-hidden">
+        <div className="text-white headerImage overflow-hidden">
             <div className="headerImage__filter relative overflow-hidden">
                 <Container first={true}>
                     <Nav />

@@ -1,31 +1,21 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Person from '../Person/Person';
+import Testimonial from '../Testimonial/Testimonial';
 
-const Slick = ({lists, imageUrl}) => {
-
-    const detailsRefs = useRef([]);
-
+const Slick2 = ({lists}) => {
     const settings = {
         dots: true,
         arrows: false,
         infinite: true,
         speed: 500,
-        slidesToShow: lists.length >= 4 ? 4 : lists.length,
-        slidesToScroll: lists.length >= 4 ? 4 : lists.length,
+        slidesToShow: lists.length >= 3 ? 3 : lists.length,
+        slidesToScroll: lists.length >= 3 ? 3 : lists.length,
         swipeToSlide: true,
         autoplay: true,
         autoplaySpeed: 5000,
         responsive: [
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: lists.length >= 3 ? 3 : lists.length,
-                slidesToScroll: lists.length >= 3 ? 3 : lists.length,
-              }
-            },
             {
               breakpoint: 768,
               settings: {
@@ -46,12 +36,12 @@ const Slick = ({lists, imageUrl}) => {
     return (
         <Slider {...settings}>
             {
-                lists.map((list, index) => (
-                    <Person key={list.id} person={list} index={index} imageUrl={imageUrl} detailsRefs={detailsRefs} />
+                lists.map(list => (
+                    <Testimonial key={list.id} testimonial={list} />
                 ))
             }
         </Slider>
     )
 }
 
-export default Slick
+export default Slick2

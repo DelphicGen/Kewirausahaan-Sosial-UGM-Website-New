@@ -6,7 +6,7 @@ import leftArrow from '../../images/upcoming_event/left_arrow.svg';
 import rightArrow from '../../images/upcoming_event/right_arrow.svg';
 import Button from '../../components/Button/Button';
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({data}) => {
 
     const controlRefs = useRef([]);
     const upcomingEventRefs = useRef([]);
@@ -15,32 +15,32 @@ const UpcomingEvents = () => {
     const [nextIndex, setNextIndex] = useState(1);
     const [xDown, setXDown] = useState(null);
 
-    const [upcomingEvents, setUpcomingEvents] = useState([
-        {
-            id: 0,
-            title: '1',
-            date: '2020-09-03 23:53:00',
-            details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-            full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
-            image: '1.png'
-        },
-        {
-            id: 1,
-            title: '2',
-            date: '2020-09-03 23:53:00',
-            details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-            full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
-            image: '2.png'
-        },
-        {
-            id: 3,
-            title: '3',
-            date: '2020-09-03 23:53:00',
-            details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-            full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
-            image: '3.png'
-        }
-    ]);
+    // const [upcomingEvents, setUpcomingEvents] = useState([
+    //     {
+    //         id: 0,
+    //         title: '1',
+    //         date: '2020-09-03 23:53:00',
+    //         details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    //         full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
+    //         image: '1.png'
+    //     },
+    //     {
+    //         id: 1,
+    //         title: '2',
+    //         date: '2020-09-03 23:53:00',
+    //         details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    //         full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
+    //         image: '2.png'
+    //     },
+    //     {
+    //         id: 3,
+    //         title: '3',
+    //         date: '2020-09-03 23:53:00',
+    //         details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    //         full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
+    //         image: '3.png'
+    //     }
+    // ]);
 
     const slide = (direction) => {
 
@@ -147,20 +147,22 @@ const UpcomingEvents = () => {
                         <img onClick={() => slide('right')} ref={el => controlRefs.current[1] = el} className="upcomingEvents__rightControl absolute cursor-pointer z-10" src={rightArrow} alt="next"/>
                     </div>
                     {
-                        upcomingEvents.map((event, index) => (
-                            <img onClick={() => checkSlide(index)} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} ref={el => upcomingEventRefs.current[index] = el} className={`upcomingEvents__image ${index === 0 ? 'active-event' : (index === 1 ? 'next cursor-pointer' : (index === upcomingEvents.length - 1 ? 'prev cursor-pointer' : 'hidden-event'))} inline-block`} id="upcomingEvents__image" src={require(`../../images/upcoming_event/${event.image}`)} alt={event.title} key={event.id} />
-                        ))
+                        data && (
+                        data.map((event, index) => (
+                            <img onClick={() => checkSlide(index)} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} ref={el => upcomingEventRefs.current[index] = el} className={`upcomingEvents__image ${index === 0 ? 'active-event' : (index === 1 ? 'next cursor-pointer' : (index === data.length - 1 ? 'prev cursor-pointer' : 'hidden-event'))} inline-block`} id="upcomingEvents__image" src={require(`../../images/upcoming_event/${event.image}`)} alt={event.title} key={event.id} />
+                        )))
                     }
 
                     {
-                        upcomingEvents.map((event, index) => (
+                        data && (
+                        data.map((event, index) => (
                             <div key={event.id} className={`upcomingEvents__detail ${index !== 0 && 'hidden'} mt-10 text-center`}>
                                 <h4 className="upcomingEvents__title text-xl sm:text-2xl font-semibold">{event.title}</h4>
                                 <p className="upcomingEvents__date text-sm mb-5 sm:text-base">{event.date}</p>
                                 <p className="upcomingEvents__details text-lg sm:text-xl mb-3">{event.details}</p>
                                 <Button />
                             </div>
-                        ))
+                        )))
                     }
                 </div>
 

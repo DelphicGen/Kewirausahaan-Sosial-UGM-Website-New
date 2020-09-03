@@ -1,0 +1,30 @@
+.article {
+    height: 596px;
+    border-color: #4E3D42;
+}
+
+.article__image {
+    height: 360px;
+    width: 100%;
+    object-position: center !important;
+    object-fit: cover !important;
+}
+
+.card {
+    padding: 0 !important;
+    position: relative;
+}
+
+.article__details {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 12px !important;
+}
+
+.article__btn {
+    position: absolute;
+    bottom: 3%;
+}

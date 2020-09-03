@@ -1,0 +1,30 @@
+.testimonial {
+    background-color: #4E3D42;
+    border-radius: 20px;
+}
+
+.testimonial__header {
+    border-bottom: 1px solid #fff;
+}
+
+.testimonial__image {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.testimonial__name {
+    font-size: 14px;
+}
+
+.testimonial__details {
+    height: 100px;
+    font-size: 16px;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
