@@ -10,8 +10,8 @@ const Slick2 = ({lists}) => {
         arrows: false,
         infinite: true,
         speed: 500,
-        slidesToShow: lists.length >= 3 ? 3 : lists.length,
-        slidesToScroll: lists.length >= 3 ? 3 : lists.length,
+        slidesToShow: lists?.length >= 3 ? 3 : lists?.length,
+        slidesToScroll: lists?.length >= 3 ? 3 : lists?.length,
         swipeToSlide: true,
         autoplay: true,
         autoplaySpeed: 5000,
@@ -19,28 +19,32 @@ const Slick2 = ({lists}) => {
             {
               breakpoint: 768,
               settings: {
-                slidesToShow: lists.length >= 2 ? 2 : lists.length,
-                slidesToScroll: lists.length >= 2 ? 2 : lists.length,
+                slidesToShow: lists?.length >= 2 ? 2 : lists?.length,
+                slidesToScroll: lists?.length >= 2 ? 2 : lists?.length,
               }
             },
             {
               breakpoint: 576,
               settings: {
-                slidesToShow: lists.length >= 1 ? 1 : lists.length,
-                slidesToScroll: lists.length >= 1 ? 1 : lists.length
+                slidesToShow: lists?.length >= 1 ? 1 : lists?.length,
+                slidesToScroll: lists?.length >= 1 ? 1 : lists?.length
               }
             }
         ]
     };
 
     return (
-        <Slider {...settings}>
-            {
-                lists.map(list => (
-                    <Testimonial key={list.id} testimonial={list} />
-                ))
-            }
-        </Slider>
+      <React.Fragment>
+        {lists && (
+          <Slider {...settings}>
+              {
+                  lists.map(list => (
+                      <Testimonial key={list.id} testimonial={list} />
+                  ))
+              }
+          </Slider>
+        )}
+      </React.Fragment>
     )
 }
 

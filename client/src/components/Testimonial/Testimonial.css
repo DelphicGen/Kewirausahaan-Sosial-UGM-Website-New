@@ -18,8 +18,11 @@
     font-size: 14px;
 }
 
-.testimonial__details {
+.testimonial__detailsContainer {
     height: 100px;
+}
+
+.testimonial__details {
     font-size: 16px;
     height: 100%;
     overflow: hidden;

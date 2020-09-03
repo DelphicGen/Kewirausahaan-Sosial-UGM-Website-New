@@ -8,9 +8,9 @@ const Testimonial = ({testimonial}) => {
                 <img className="testimonial__image" src={require(`../../images/testimonial/${testimonial.image}`)} alt={testimonial.name} />
                 <p className="testimonial__name">{testimonial.name}</p>
             </div>
-            <p className="testimonial__details p-1 font-semibold flex items-center">
-                {testimonial.details}
-            </p>
+            <div className="testimonial__detailsContainer p-1 font-semibold flex items-center">
+                <p className="testimonial__details">{testimonial.details}</p>
+            </div>
         </div>
     )
 }

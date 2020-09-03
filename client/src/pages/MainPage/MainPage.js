@@ -33,12 +33,12 @@ const MainPage = () => {
             <AboutUs />
             <UpcomingEvents data={data.upcomingEvents} />
             <Curriculum />
-            <LatestEvent />
-            <OurMentor />
-            <OurTeam />
-            <Articles />
-            <Testimonials />
-            <MeetTheFounder />
+            <LatestEvent data={data.latestEvents} />
+            <OurMentor data={data.mentors} />
+            <OurTeam data={data.teamMembers} />
+            <Articles data={data.articles} />
+            <Testimonials data={data.testimonials} />
+            <MeetTheFounder data={data.leaderReviews} />
             <Collaborate />
         </React.Fragment>
     )

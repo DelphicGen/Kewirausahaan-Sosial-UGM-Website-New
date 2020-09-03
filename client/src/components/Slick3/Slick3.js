@@ -16,13 +16,17 @@ const Slick3 = ({lists}) => {
     };
 
     return (
-        <Slider {...settings}>
-            {
-                lists.map(list => (
-                    <Review key={list.id} review={list} />
-                ))
-            }
-        </Slider>
+        <React.Fragment>
+            {lists && (
+                <Slider {...settings}>
+                    {
+                        lists.map(list => (
+                            <Review key={list.id} review={list} />
+                        ))
+                    }
+                </Slider>
+            )}
+        </React.Fragment>
     )
 }
 

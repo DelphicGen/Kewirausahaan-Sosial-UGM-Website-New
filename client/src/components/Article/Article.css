@@ -1,6 +1,6 @@
 .article {
     height: 596px;
-    border-color: #4E3D42;
+    width: calc(100% /3);
 }
 
 .article__image {

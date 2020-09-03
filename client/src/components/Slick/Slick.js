@@ -13,8 +13,8 @@ const Slick = ({lists, imageUrl}) => {
         arrows: false,
         infinite: true,
         speed: 500,
-        slidesToShow: lists.length >= 4 ? 4 : lists.length,
-        slidesToScroll: lists.length >= 4 ? 4 : lists.length,
+        slidesToShow: lists?.length >= 4 ? 4 : lists?.length,
+        slidesToScroll: lists?.length >= 4 ? 4 : lists?.length,
         swipeToSlide: true,
         autoplay: true,
         autoplaySpeed: 5000,
@@ -22,35 +22,39 @@ const Slick = ({lists, imageUrl}) => {
             {
               breakpoint: 992,
               settings: {
-                slidesToShow: lists.length >= 3 ? 3 : lists.length,
-                slidesToScroll: lists.length >= 3 ? 3 : lists.length,
+                slidesToShow: lists?.length >= 3 ? 3 : lists?.length,
+                slidesToScroll: lists?.length >= 3 ? 3 : lists?.length,
               }
             },
             {
               breakpoint: 768,
               settings: {
-                slidesToShow: lists.length >= 2 ? 2 : lists.length,
-                slidesToScroll: lists.length >= 2 ? 2 : lists.length,
+                slidesToShow: lists?.length >= 2 ? 2 : lists?.length,
+                slidesToScroll: lists?.length >= 2 ? 2 : lists?.length,
               }
             },
             {
               breakpoint: 576,
               settings: {
-                slidesToShow: lists.length >= 1 ? 1 : lists.length,
-                slidesToScroll: lists.length >= 1 ? 1 : lists.length
+                slidesToShow: lists?.length >= 1 ? 1 : lists?.length,
+                slidesToScroll: lists?.length >= 1 ? 1 : lists?.length
               }
             }
         ]
     };
 
     return (
-        <Slider {...settings}>
-            {
-                lists.map((list, index) => (
-                    <Person key={list.id} person={list} index={index} imageUrl={imageUrl} detailsRefs={detailsRefs} />
-                ))
-            }
-        </Slider>
+      <React.Fragment>
+        {lists && (
+          <Slider {...settings}>
+              {
+                  lists.map((list, index) => (
+                      <Person key={list.id} person={list} index={index} imageUrl={imageUrl} detailsRefs={detailsRefs} />
+                  ))
+              }
+          </Slider>
+        )}
+      </React.Fragment>
     )
 }
 

@@ -1,49 +1,15 @@
-import React, {useState} from 'react';
-
+import React from 'react';
 import Container from '../../components/Container/Container';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
-import './OurMentor.css';
 import Slick from '../../components/Slick/Slick';
 
-const OurMentor = () => {
-    const [mentors, setMentors] = useState([
-        {
-            id: 0,
-            name: 'Lingga Madu',
-            title: 'Co-Founder Sorabel',
-            image: 'linggamadu.webp',
-            facebook: 'https://facebook.com',
-            twitter: 'https://facebook.com',
-            instagram: 'https://facebook.com',
-            linkedin: 'https://facebook.com'
-        },
-        {
-            id: 1,
-            name: 'Delta Purna Widyangga',
-            title: 'CEO Co-Founder Qiscus',
-            image: 'deltapurna.webp',
-            facebook: 'https://facebook.com',
-            twitter: 'https://facebook.com',
-            instagram: 'https://facebook.com',
-            linkedin: 'https://facebook.com'
-        },
-        {
-            id: 2,
-            name: 'Andy Fajar Handika',
-            title: 'Founder Kulina & Chef Revenue Officer Cookpad',
-            image: 'andyfajar.webp',
-            facebook: 'https://facebook.com',
-            twitter: 'https://facebook.com',
-            instagram: 'https://facebook.com',
-            linkedin: 'https://facebook.com'
-        }
-    ])
+const OurMentor = ({data}) => {
 
     return (
         <div className="mentors">
             <Container>
                 <SectionHeader heading="Mentor Kita" />
-                <Slick lists={mentors} imageUrl="mentor" />  
+                <Slick lists={data} imageUrl="mentor" />  
             </Container>
         </div>
     )

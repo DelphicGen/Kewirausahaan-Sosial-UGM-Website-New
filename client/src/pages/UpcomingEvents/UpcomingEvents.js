@@ -15,33 +15,6 @@ const UpcomingEvents = ({data}) => {
     const [nextIndex, setNextIndex] = useState(1);
     const [xDown, setXDown] = useState(null);
 
-    // const [upcomingEvents, setUpcomingEvents] = useState([
-    //     {
-    //         id: 0,
-    //         title: '1',
-    //         date: '2020-09-03 23:53:00',
-    //         details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    //         full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
-    //         image: '1.png'
-    //     },
-    //     {
-    //         id: 1,
-    //         title: '2',
-    //         date: '2020-09-03 23:53:00',
-    //         details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    //         full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
-    //         image: '2.png'
-    //     },
-    //     {
-    //         id: 3,
-    //         title: '3',
-    //         date: '2020-09-03 23:53:00',
-    //         details: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    //         full_details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quisquam qui fugit pariatur rerum, vel quos a repellat voluptates tempora nihil earum nisi aspernatur iure illo omnis non. Impedit, ipsam.",
-    //         image: '3.png'
-    //     }
-    // ]);
-
     const slide = (direction) => {
 
         let upcomingEvents = upcomingEventRefs.current;
@@ -141,17 +114,22 @@ const UpcomingEvents = ({data}) => {
         <div className="upcomingEvents relative overflow-hidden">
             <Container>
                 <SectionHeader heading="Event Kami Kedepannya" />
-                <div className="upcomingEvents__list relative">
-                    <div className="upcomingEvents__controls mb-10">
-                        <img onClick={() => slide('left')} ref={el => controlRefs.current[0] = el} className="upcomingEvents__leftControl absolute cursor-pointer z-10" src={leftArrow} alt="prev" />
-                        <img onClick={() => slide('right')} ref={el => controlRefs.current[1] = el} className="upcomingEvents__rightControl absolute cursor-pointer z-10" src={rightArrow} alt="next"/>
+                <div className="upcomingEvents__list">
+                    <div className="relative">
+                        {
+                            data?.length > 1 && (
+                                <div className="upcomingEvents__controls mb-10">
+                                    <img onClick={() => slide('left')} ref={el => controlRefs.current[0] = el} className="upcomingEvents__leftControl absolute cursor-pointer z-10" src={leftArrow} alt="prev" />
+                                    <img onClick={() => slide('right')} ref={el => controlRefs.current[1] = el} className="upcomingEvents__rightControl absolute cursor-pointer z-10" src={rightArrow} alt="next"/>
+                                </div>
+                            )
+                        }
+                        {
+                            data?.map((event, index) => (
+                                <img onClick={() => checkSlide(index)} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} ref={el => upcomingEventRefs.current[index] = el} className={`upcomingEvents__image ${index === 0 ? 'active-event' : (index === 1 ? 'next cursor-pointer' : (index === data.length - 1 ? 'prev cursor-pointer' : 'hidden-event'))} inline-block`} id="upcomingEvents__image" src={require(`../../images/upcoming_event/${event.image}`)} alt={event.title} key={event.id} />
+                            ))
+                        }
                     </div>
-                    {
-                        data && (
-                        data.map((event, index) => (
-                            <img onClick={() => checkSlide(index)} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} ref={el => upcomingEventRefs.current[index] = el} className={`upcomingEvents__image ${index === 0 ? 'active-event' : (index === 1 ? 'next cursor-pointer' : (index === data.length - 1 ? 'prev cursor-pointer' : 'hidden-event'))} inline-block`} id="upcomingEvents__image" src={require(`../../images/upcoming_event/${event.image}`)} alt={event.title} key={event.id} />
-                        )))
-                    }
 
                     {
                         data && (
