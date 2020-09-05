@@ -42,11 +42,11 @@
 
 .person__media svg {
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .person__details {
     background-color: #FFAD08;
-    height: 120px !important;
+    height: 100px !important;
 }

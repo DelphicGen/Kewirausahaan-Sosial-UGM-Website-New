@@ -5,6 +5,8 @@ import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import leftArrow from '../../images/upcoming_event/left_arrow.svg';
 import rightArrow from '../../images/upcoming_event/right_arrow.svg';
 import Button from '../../components/Button/Button';
+import { dateTimeFormat } from '../../functions/functions';
+import {Link} from "react-router-dom";
 
 const UpcomingEvents = ({data}) => {
 
@@ -134,11 +136,13 @@ const UpcomingEvents = ({data}) => {
                     {
                         data && (
                         data.map((event, index) => (
-                            <div key={event.id} className={`upcomingEvents__detail ${index !== 0 && 'hidden'} mt-10 text-center`}>
+                            <div key={event.id} className={`upcomingEvents__detail ${index !== 0 && 'hidden'} mt-10 text-center w-full md:w-4/5 lg:w-3/5 mx-auto`}>
                                 <h4 className="upcomingEvents__title text-xl sm:text-2xl font-semibold">{event.title}</h4>
-                                <p className="upcomingEvents__date text-sm mb-5 sm:text-base">{event.date}</p>
+                                <p className="upcomingEvents__date text-sm mb-5 sm:text-base">{dateTimeFormat(event.date)}</p>
                                 <p className="upcomingEvents__details text-lg sm:text-xl mb-3">{event.details}</p>
-                                <Button />
+                                <Link to={`/event?id=${event.id}`}>
+                                    <Button />
+                                </Link>
                             </div>
                         )))
                     }

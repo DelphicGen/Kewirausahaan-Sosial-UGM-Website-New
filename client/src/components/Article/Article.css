@@ -1,10 +1,10 @@
 .article {
-    height: 596px;
-    width: calc(100% /3);
+    width: 33%;
+    border: 2px solid #d3d3d3;
 }
 
 .article__image {
-    height: 360px;
+    height: 200px;
     width: 100%;
     object-position: center !important;
     object-fit: cover !important;
@@ -16,15 +16,33 @@
 }
 
 .article__details {
+    border-top: 2px solid #d3d3d3;
+}
+
+.article__text, .article__title {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-bottom: 12px !important;
+
 }
 
-.article__btn {
-    position: absolute;
-    bottom: 3%;
+.article__title {
+    height: 60px;
+    -webkit-line-clamp: 2;
+}
+
+.article__text *:not(:first-child) {
+    display: none;
+}
+
+.article__text {
+    -webkit-line-clamp: 3;
+}
+
+@media screen and (max-width: 1023px) {
+    .article {
+        width: 100%;
+    }
+    
 }

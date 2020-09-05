@@ -26,14 +26,11 @@ const Nav = () => {
         <React.Fragment>
             <nav className="navbar flex justify-between items-center">
                 <img src={logo} alt="logo-ks" className="navbar__logo h-auto" />
-                <ul className="navbar__links text-base sm:flex hidden">
-                    <li className="navbar_item font-medium mr-4">
-                        <a className="navbar__link direct" href="/#about-us">Tentang Kami</a>
+                <ul className="navbar__links text-base sm:flex hidden relative">
+                    <li className="navbar_item font-medium mr-8">
+                        <a className="navbar__link" href="/">Home</a>
                     </li>
-                    <li className="navbar_item font-medium mr-4">
-                        <a className="navbar__link direct" href="/#curriculum">Kurikulum</a>
-                    </li>
-                    <li className="navbar_item font-medium mr-4">
+                    <li className="navbar_item font-medium mr-8">
                         <a className="navbar__link" href="/events">Event</a>
                     </li>
                     <li className="navbar_item font-medium">
@@ -50,18 +47,15 @@ const Nav = () => {
 
 
             <ul ref={navRef} className="navbar__links2 text-base relative w-full sm:hidden block">
-                <li className="navbar_item font-medium mr-4">
-                    <a className="navbar__link block py-5 direct" href="/#about-us">Tentang Kami</a>
-                </li>
-                <li className="navbar_item font-medium mr-4">
-                    <a className="navbar__link block py-5 direct" href="/#curriculum">Kurikulum</a>
-                </li>
-                <li className="navbar_item font-medium mr-4">
-                    <a className="navbar__link block py-5" href="/events">Event</a>
-                </li>
-                <li className="navbar_item font-medium">
-                    <a className="navbar__link block py-5" href="/articles">Blog</a>
-                </li>
+                    <li className="navbar_item font-medium mr-8">
+                        <a className="navbar__link" href="/">Home</a>
+                    </li>
+                    <li className="navbar_item font-medium mr-8">
+                        <a className="navbar__link" href="/events">Event</a>
+                    </li>
+                    <li className="navbar_item font-medium">
+                        <a className="navbar__link" href="/articles">Blog</a>
+                    </li>
             </ul>
         </React.Fragment>
     )

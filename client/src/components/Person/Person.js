@@ -5,7 +5,7 @@ import './Person.css'
 
 const Person = ({person, index, imageUrl, detailsRefs}) => {
     return (
-        <div key={person.id} className="person__list mr-2 rounded-lg">
+        <div key={person.id} className="person__list mr-2">
             <div className="person__header relative overflow-hidden">
                 <img className="person__image w-full" src={require(`../../images/${imageUrl}/${person.image}`)} alt={person.name} />
                 <div className="person__media flex justify-around items-center px-8 py-4 absolute z-10 w-full">

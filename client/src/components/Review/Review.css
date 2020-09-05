@@ -1,6 +1,14 @@
 .review {
-    padding: 100px 0;
     background-color: #4E3D42;
+    height: 400px;
+}
+
+.review__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
 .carousel-item {
@@ -9,14 +17,27 @@
     text-align: center;
 }
 
-.review__image {
-    width: 120px !important;
-    height: 120px;
-    margin: 0 auto 20px;
+.review__imageContainer {
+    width: fit-content;
     border-radius: 50%;
 }
 
-.review__content{
+.review__image {
+    object-position: center !important;
+    object-fit: cover !important;
+    width: 150px !important;
+    height: 150px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 767px) {
+    .review__image {
+        width: 100px !important;
+        height: 100px;
+    }
+}
+
+/* .review__content{
     width: 80%;
     margin: 60px auto;
-}
+} */

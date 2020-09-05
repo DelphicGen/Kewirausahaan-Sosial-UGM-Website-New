@@ -12,11 +12,13 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-slick": "^0.27.10",
+    "react-table": "^7.5.0",
     "slick-carousel": "^1.8.1",
     "tailwindcss": "^1.7.6"
   },
