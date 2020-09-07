@@ -1,12 +1,54 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import Container from '../../components/Container/Container';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Input from '../../components/Input/Input';
 import './Collaborate.css';
+import Axios from 'axios';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { success, error } from '../../actions/action';
 
 const Collaborate = () => {
+    const dispatch = useCallback(useDispatch(), []);
+    const [data, setData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    })
+
+    const handleFormChange = (e) => {
+        let {name, value} = e.target;
+
+        setData(prevForm => ({
+            ...prevForm,
+            [name]: value
+        }))
+    }
+
+    const collab = () => {
+        Axios({
+            method: 'POST',
+            url: `http://localhost:9000/collab`,
+            data: data,
+            withCredentials: true,
+            headers: {'Content-Type': 'application/json' }
+        })
+            .then(response => {
+                if(response.data === 'Ok') {
+                    dispatch(success("Email sent, we will contact you as soon as possible"));
+                    setData({
+                        name: '',
+                        email: '',
+                        message: ''
+                    })
+                } else {
+                    dispatch(error(response.data.message))
+                }
+            })
+    }
+
     return (
         <div className="collaborate pb-0 md:pb-5">
             <Container>
@@ -27,10 +69,10 @@ const Collaborate = () => {
                     </div>
 
                     <div className="collaborate__form w-11/12 sm:w-3/4 md:w-1/3">
-                        <Input name="name" />
-                        <Input name="email" />
-                        <Input name="message" textarea={true} />
-                        <button className="collaborate__submit border-0 py-2 w-full font-semibold mx-auto">Kirim</button>
+                        <Input name="name" onChange={handleFormChange} type="text" required={true} value={data.name} />
+                        <Input name="email" onChange={handleFormChange} type="email" required={true} value={data.email} />
+                        <Input name="message" onChange={handleFormChange} type="text" value={data.message} />
+                        <button onClick={collab} className="collaborate__submit border-0 py-2 w-full font-semibold mx-auto">Kirim</button>
                     </div>
                 </div>
             </Container>

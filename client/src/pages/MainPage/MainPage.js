@@ -19,8 +19,7 @@ const MainPage = () => {
         axios({
                 method: 'GET',
                 url: 'http://localhost:9000/',
-                withCredentials: true,
-                headers: {'Content-Type': 'application/json' }
+                withCredentials: true
         })
             .then(response => {
                 setData(response.data)

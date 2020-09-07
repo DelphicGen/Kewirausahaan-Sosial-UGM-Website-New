@@ -17,3 +17,16 @@ export const dateTimeFormat = (date) => {
     if(hour !== false) return [year, month, day].join('-') + ' ' + [hour, minute, second].join(':');
     else return [year, month, day].join('-');
 }
+
+export const dateFormat = (date) => {
+    
+    let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}

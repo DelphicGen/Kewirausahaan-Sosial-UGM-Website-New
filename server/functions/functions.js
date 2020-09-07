@@ -5,15 +5,13 @@ const connection = require('../connection/connection');
 function checkAuthenticated(req, res, next) {
     if(req.isAuthenticated()) {
         return next();
-    }
-    res.redirect(`${baseUrl}login`)
+    } else res.send("Not authenticated")
 }
 
 function checkNotAuthenticated(req, res, next) {
     if(req.isAuthenticated()) {
-        return res.redirect(`${baseUrl}adminDashboard`)
-    }
-    return next();
+        res.send("Is authenticated")
+    } else return next();
 }
 
 function add(req, res, date, image) {
@@ -24,7 +22,7 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.title, req.body.facebook, req.body.twitter, req.body.instagram, req.body.linkedin, image],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -35,7 +33,7 @@ function add(req, res, date, image) {
                 [req.query.table, date, req.body.link],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -46,7 +44,7 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.title, req.body.details, req.body.full_details, date, image, req.body.link],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -57,7 +55,7 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.title, req.body.facebook, req.body.twitter, req.body.instagram, req.body.linkedin, image],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -68,7 +66,7 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.title, req.body.author, req.body.details, req.body.full_details, image, req.body.link],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -79,7 +77,7 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.details, image],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -90,7 +88,7 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.title, req.body.details, image],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -100,12 +98,12 @@ function add(req, res, date, image) {
                 [req.query.table, req.body.email, req.body.email, req.body.message],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
         default:
-            res.redirect(`${baseUrl}adminDashboard`)
+            res.send('Ok')
     }
 }
 
@@ -117,7 +115,7 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.title, req.body.facebook, req.body.twitter, req.body.instagram, req.body.linkedin, image, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -128,7 +126,7 @@ function edit(req, res, date, image) {
                 [req.query.table, date, req.body.link, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -139,7 +137,7 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.title, req.body.details, req.body.full_details, date, image, req.body.link, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -150,7 +148,7 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.title, req.body.facebook, req.body.twitter, req.body.instagram, req.body.linkedin, image, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -161,7 +159,7 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.title, req.body.author, req.body.details, req.body.full_details, image, req.body.link, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -172,7 +170,7 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.details, image, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -183,7 +181,7 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.title, req.body.details, image, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`)
+                    else res.send('Ok')
                 }
             );
             break;
@@ -193,12 +191,12 @@ function edit(req, res, date, image) {
                 [req.query.table, req.body.name, req.body.email, req.body.message, req.query.id],
                 (error, results) => {
                     if(error) throw error;
-                    else res.redirect(`${baseUrl}adminDashboard`);
+                    else res.send('Ok');
                 }
             );
             break;
         default:
-            res.redirect(`${baseUrl}adminDashboard`);
+            res.send('Ok');
     }
 }
 

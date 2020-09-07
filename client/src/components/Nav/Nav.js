@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import logo from '../../images/header_image/logo2.png';
 import './Nav.css';
 
-const Nav = () => {
+const Nav = ({headerImage}) => {
 
     const navRef = useRef(null);
     const hamburgerRef = useRef(null);
@@ -24,7 +24,7 @@ const Nav = () => {
 
     return (
         <React.Fragment>
-            <nav className="navbar flex justify-between items-center">
+            <nav className={`navbar flex justify-between items-center ${!headerImage && 'sm:mb-10'}`}>
                 <img src={logo} alt="logo-ks" className="navbar__logo h-auto" />
                 <ul className="navbar__links text-base sm:flex hidden relative">
                     <li className="navbar_item font-medium mr-8">
@@ -46,16 +46,16 @@ const Nav = () => {
             </nav>
 
 
-            <ul ref={navRef} className="navbar__links2 text-base relative w-full sm:hidden block">
-                    <li className="navbar_item font-medium mr-8">
-                        <a className="navbar__link" href="/">Home</a>
-                    </li>
-                    <li className="navbar_item font-medium mr-8">
-                        <a className="navbar__link" href="/events">Event</a>
-                    </li>
-                    <li className="navbar_item font-medium">
-                        <a className="navbar__link" href="/articles">Blog</a>
-                    </li>
+            <ul ref={navRef} className="navbar__links2 text-base relative w-full sm:hidden block mb-10">
+                <li className="navbar_item font-medium">
+                    <a className="navbar__link block py-5 direct" href="/">Home</a>
+                </li>
+                <li className="navbar_item font-medium">
+                    <a className="navbar__link block py-5" href="/events">Event</a>
+                </li>
+                <li className="navbar_item font-medium">
+                    <a className="navbar__link block py-5" href="/articles">Blog</a>
+                </li>
             </ul>
         </React.Fragment>
     )

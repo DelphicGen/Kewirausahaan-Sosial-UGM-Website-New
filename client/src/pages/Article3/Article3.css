@@ -1,0 +1,29 @@
+.article3__image {
+    width: 100%;
+    height: auto;
+}
+
+.article3__titleContainer {
+    background-color: rgba(43, 45, 66, .7);
+    bottom: 0;
+    width: 70%;
+    left: 15%;
+    transition: all .3s ease-in-out;
+}
+
+.article3__titleContainer:hover {
+    background-color: rgba(43, 45, 66, .9);
+}
+
+@media screen and (max-width: 767px) {
+    .article3__image {
+        min-height: 300px;
+        object-position: center !important;
+        object-fit: cover !important;
+    }
+
+    .article3__titleContainer {
+        width: 100%;
+        left: 0;
+    }
+}

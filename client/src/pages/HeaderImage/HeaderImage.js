@@ -9,7 +9,7 @@ const HeaderImage = () => {
             <span className="headerImage__watermark absolute font-bold">Kewirausahaan</span>
             <div className="headerImage__filter relative overflow-hidden">
                 <Container first={true}>
-                    <Nav />
+                    <Nav headerImage={true} />
                     <div className="headerImage__container w-full lg:w-4/5">
                         <div className="headerImage__headingList text-white ">
                             <h1 className="headerImage__mainHeader pl-5 uppercase text-5xl md:text-6xl font-bold mb-6">Bentuk Mindset Wirausaha</h1>

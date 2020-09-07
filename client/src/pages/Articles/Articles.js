@@ -20,7 +20,7 @@ const Articles = ({data}) => {
         <div>
             <Container>
                 <SectionHeader heading="Artikel" />
-                <div className="flex flex-col md:flex-row items-center lg:items-start justify-between">
+                <div className="flex flex-col md:flex-row items-start lg:items-start justify-between">
                     {
                         data?.map((article, index) => (
                             <Article ref={detailsRefs.current} article={article} index={index} key={article.id} />

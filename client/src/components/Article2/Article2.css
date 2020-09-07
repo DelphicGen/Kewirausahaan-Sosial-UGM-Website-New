@@ -1,0 +1,15 @@
+.article2__fullDetails *:not(:first-child) {
+    display: none;
+}
+
+.article__details {
+    border-top: 2px solid #d3d3d3;
+}
+
+.article2__fullDetails {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}

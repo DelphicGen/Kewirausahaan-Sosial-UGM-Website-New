@@ -1,3 +1,7 @@
+table {
+    min-width: 900px;
+}
+
 th {
     padding: 12px 0;
     border-bottom: 3px solid #fff;
@@ -6,6 +10,56 @@ th {
 td {
     padding: 12px;
     border-bottom: 1px solid #fff;
+}
+
+.tableContainer {
+    overflow-y: auto;
+}
+
+.tableContainer::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #a7a7a7; 
+  border-radius: 10px;
+  transition: .1s all ease-in-out;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #505050; 
+}
+
+.column {
+    min-width: 300px;
+}
+
+.column--Id {
+    min-width: 50px;
+}
+
+.column--Link {
+    min-width: 200px;
+}
+
+.column--Title, .column--Details {
+    min-width: 400px;
+}
+
+.wraptext {
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -webkit-pre-wrap;          /* Chrome & Safari */ 
+    white-space: -pre-wrap;                 /* Opera 4-6 */
+    white-space: -o-pre-wrap;               /* Opera 7 */
+    white-space: pre-wrap;                  /* CSS3 */
+    word-wrap: break-word;                  /* Internet Explorer 5.5+ */
+    word-break: break-all;
+    white-space: normal;
 }
 
 .arrow {
@@ -21,4 +75,15 @@ td {
 
 .spin-arrow {
     transform: rotate(180deg);
+}
+
+.paginationArrow {
+    width: 35px;
+    height: 35px;
+    transition: .2s all ease-in-out;
+}
+
+.paginationArrow:hover {
+    background-color: #fff;
+    color: rgba(43, 45, 66, .95);
 }

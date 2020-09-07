@@ -10,22 +10,26 @@ const baseUrl = require('../variables/variables');
 
 const connection = require('../connection/connection');
 
-
-router.get(`${baseUrl}login`, checkNotAuthenticated, (req, res) => {
-    res.render('login.ejs');
+router.get('/checknotauthenticated', checkNotAuthenticated, function(req, res, next) {
+    res.send('Ok')
 });
 
-router.post(`${baseUrl}login`, checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: `${baseUrl}adminDashboard`,
-    failureRedirect: `${baseUrl}login`,
-    failureFlash: true 
-}));
+router.get('/checkauthenticated', checkAuthenticated, function(req, res, next) {
+    res.send('Ok')
+});
 
-router.get(`${baseUrl}register`, async (req, res) => {
-    req.user.then (data => {
-        if(data.role === 'super admin') res.render('register.ejs');
-        else res.redirect(`${baseUrl}adminDashboard`);
-    })
+router.post('/login', checkNotAuthenticated,function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err) }
+        if (!user) {
+          req.flash('error', info.message);
+          return res.send(info)
+        }
+        req.login(user, function(err) {
+            if (err) { return next(err); }
+            res.send({message: info.message, user: user})
+        });
+      })(req, res, next);
 });
 
 router.post(`${baseUrl}register`, async(req, res) => {
@@ -41,13 +45,13 @@ router.post(`${baseUrl}register`, async(req, res) => {
                         }   
                         else{
                             if(data[0].cnt > 0) {  
-                                res.render('register.ejs', { message: 'Email is registered' });
+                                res.send({ message: 'Email is registered' });
                             } else {
                                 connection.query(
                                     "INSERT INTO users (email, username, password) VALUES ('" + req.body.email + "', '" + req.body.username + "', '" + hashedPassword + "')",
                                     (error, results) => {
                                         if(error) throw error;
-                                        else res.redirect(`${baseUrl}adminDashboard`);
+                                        else res.send('Ok');
                                     }
                                 );                  
                             }
@@ -55,20 +59,16 @@ router.post(`${baseUrl}register`, async(req, res) => {
                     })
         
             } catch {
-                res.redirect(`${baseUrl}register`);
+                res.send({ message: 'Something went wrong' });
             }
         }
-        else res.redirect(`${baseUrl}adminDashboard`);
+        else res.send({ message: 'Not super admin' });
     }) 
 });
 
 router.delete(`${baseUrl}logout`, (req, res) => {
     req.logOut();
-    res.redirect(`${baseUrl}login`);
-});
-
-router.get(`${baseUrl}forgot`, function(req, res) {
-    res.render('forgot');
+    res.send('Ok')
 });
 
 router.post(`${baseUrl}forgot`, function(req, res, next) {
@@ -94,7 +94,7 @@ router.post(`${baseUrl}forgot`, function(req, res, next) {
 
                     if (user.length === 0) {
                         req.flash('error', 'No account with that email address exists.');
-                        return res.redirect(`${baseUrl}forgot`);
+                        return res.send({message: 'No account with that email address exists.'});
                     }
 
                     connection.query("UPDATE users SET resetPasswordToken = ?, resetPasswordExpires = ? WHERE email = ?",
@@ -120,7 +120,7 @@ router.post(`${baseUrl}forgot`, function(req, res, next) {
             subject: 'Node.js Password Reset',
             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                'http://localhost:3000/reset?token=' + token + '\n\n' +
                 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             smtpTransport.sendMail(mailOptions, function(err) {
@@ -130,21 +130,21 @@ router.post(`${baseUrl}forgot`, function(req, res, next) {
         }
     ], function(err) {
       if (err) return next(err);
-      res.redirect(`${baseUrl}forgot`);
+      else res.send('Ok');
     });
   });
 
-router.get(`${baseUrl}reset/:token`, function(req, res) {
-    connection.query("SELECT * FROM users WHERE resetPasswordToken = ? " ,
-        req.params.token,
-        function(err, user) {
-            if (user.length === 0) {
-                req.flash('error', 'Password reset token is invalid or has expired.');
-                return res.redirect(`${baseUrl}forgot`);
-            }
-            res.render('reset', {user: user[0]});
-        });
-});
+// router.get(`${baseUrl}reset/:token`, function(req, res) {
+//     connection.query("SELECT * FROM users WHERE resetPasswordToken = ? " ,
+//         req.params.token,
+//         function(err, user) {
+//             if (user.length === 0) {
+//                 req.flash('error', 'Password reset token is invalid or has expired.');
+//                 return res.redirect(`${baseUrl}forgot`);
+//             }
+//             res.render('reset', {user: user[0]});
+//         });
+// });
 
 router.post(`${baseUrl}reset/:token`, function(req, res) {
     async.waterfall([
@@ -154,12 +154,12 @@ router.post(`${baseUrl}reset/:token`, function(req, res) {
                 async function(err, user) {
                     if (user.length === 0) {
                         req.flash('error', 'Password reset token is invalid or has expired.');
-                        return res.redirect('back');
+                        return res.send({message: 'Password reset token is invalid or has expired.'});
                     }
 
                     if (req.body.newPassword !== req.body.confirmPassword) {
                         req.flash('error', 'New Password did not match with Confirm Password');
-                        return res.redirect('back');
+                        return res.send({message: 'New Password did not match with Confirm Password'});
                     }
 
                     const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
@@ -189,7 +189,7 @@ router.post(`${baseUrl}reset/:token`, function(req, res) {
         };
         smtpTransport.sendMail(mailOptions, function(err) {
         req.flash('success', 'Success! Your password has been changed.');
-        res.redirect(`${baseUrl}login`);
+        res.send(`Ok`);
         });
     }
     ]);

@@ -20,13 +20,12 @@ const UpcomingEvent = () => {
         Axios({
             method: 'GET',
             url: `http://localhost:9000/event?id=${id}`,
-            withCredentials: true,
-            headers: {'Content-Type': 'application/json' }
+            withCredentials: true
         })
             .then(response => {
-                setUpcomingEvent(response.data[0])
+                setUpcomingEvent(response.data)
             })
-    }, []);
+    }, [location.search]);
 
     useEffect(() => {
         if(upcomingEvent) {
@@ -37,22 +36,28 @@ const UpcomingEvent = () => {
     }, [upcomingEvent]);
 
     return (
-        <div className="upcomingEvent text-white pb-5">
+        <div className="newPage text-white pb-5">
             <Container first={true}>
                 <Nav />
                 {
                     upcomingEvent && (
                         <>
-                            <img className="upcomingEvent__image mt-5" src={require(`../../images/upcoming_event/${upcomingEvent.image}`)} alt={upcomingEvent.title} />
-                            <div className="">
-                                <h1 className="upcomingEvent__title font-bold text-4xl mt-5">{upcomingEvent.title}</h1>
-                                <p className="mt-2 text-base">
-                                    {
-                                        dateTimeFormat(upcomingEvent.date)
-                                    }
-                                </p>
+                            <div className="relative">
+                                <img className="upcomingEvent__image" src={require(`../../images/upcoming_event/${upcomingEvent.image}`)} alt={upcomingEvent.title} />
+                                <div className="upcomingEvent__titleContainer absolute px-5 md:px-10 py-2 md:py-5">
+                                    <h3 className="upcomingEvent__title font-bold text-lg sm:text-xl md:text-2xl ">{upcomingEvent.title}</h3>
+                                    <p className="mt-2 text-xs sm:text-sm md:text-base">
+                                        {
+                                            dateTimeFormat(upcomingEvent.date)
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="md:w-4/5 mx-auto">
                                 <div className="my-8" ref={detailsRef}>{upcomingEvent.full_details}</div>
-                                <Button large={true} register={true} />
+                                <a rel="noopener noreferrer" target="_blank" href={upcomingEvent.link}>
+                                    <Button large={true} green={true} />
+                                </a>
                             </div>
                         </>
                     )

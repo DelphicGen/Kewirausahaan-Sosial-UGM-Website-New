@@ -25,7 +25,7 @@ router.get(baseUrl, (req, res) => {
 
 router.get(`${baseUrl}events`, (req, res) => {
     connection.query(
-        'SELECT title, details, date FROM upcoming_event WHERE (date >= CURRENT_TIMESTAMP()) OR (date >= CURRENT_TIMESTAMP() AND HOUR(date) >= HOUR(CURRENT_TIMESTAMP())) ORDER BY date',
+        'SELECT id, title, details, date, link FROM upcoming_event WHERE (date >= CURRENT_TIMESTAMP()) OR (date >= CURRENT_TIMESTAMP() AND HOUR(date) >= HOUR(CURRENT_TIMESTAMP())) ORDER BY date',
         (error, results) => {
             res.send(results);
         }
@@ -37,68 +37,68 @@ router.get(`${baseUrl}event`, (req, res) => {
         'SELECT * FROM upcoming_event WHERE id = ?',
         req.query.id,
         (error, results) => {
+            res.send(results[0]);
+        }
+    )
+})
+
+router.get(`${baseUrl}articles`, (req, res) => {
+    connection.query(
+        'SELECT * FROM article ORDER BY created DESC',
+        (error, results) => {
             res.send(results);
         }
     )
 })
 
-// router.get(`${baseUrl}articles`, (req, res) => {
-//     connection.query(
-//         'SELECT * FROM article ORDER BY created DESC',
-//         (error, results) => {
-//             res.render('articles.ejs', { articles: results });
-//         }
-//     )
-// })
 
+router.get(`${baseUrl}article`, (req, res) => {
+    connection.query(
+        'SELECT * FROM article WHERE id = ?',
+        req.query.id,
+        (error, results) => {
+            res.send(results[0]);
+        }
+    )
+})
 
-// router.get(`${baseUrl}article`, (req, res) => {
-//     connection.query(
-//         'SELECT * FROM article WHERE id = ?',
-//         req.query.id,
-//         (error, results) => {
-//             res.render('article.ejs', { article: results[0] });
-//         }
-//     )
-// })
-
-// router.post(`${baseUrl}collab`, (req, res, next) => {
-//     async.waterfall([
-//         (done) => {
-//             let transporter = nodemailer.createTransport({
-//                 service: 'gmail',
-//                 auth: {
-//                     user: 'ksugm123',
-//                     pass: 'ksjaya123'
-//                 }
-//             });
+router.post(`${baseUrl}collab`, (req, res, next) => {
+    async.waterfall([
+        (done) => {
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'ksugm123',
+                    pass: 'ksjaya123'
+                }
+            });
               
-//             let mailOptions = {
-//                 from: 'ksugm123',
-//                 to: 'gennardo@mail.ugm.ac.id',
-//                 // to: 'brian@kewirausahaansosial.com',
-//                 subject: `Ajakan Kolaborasi dari ${req.body.name}, email: ${req.body.email}`,
-//                 text: req.body.message
-//             };
-//             transporter.sendMail(mailOptions, (error, info) => {
-//                 done(error, info)
-//             });
-//         },
-//         (info) => {
-//             connection.query(
-//                 'INSERT INTO collaboration (name, email, message) VALUES (?, ?, ?)',
-//                 [req.body.name, req.body.email, req.body.message],
-//                 (error, results) => {
-//                     if(error) throw error;
-//                     else res.redirect('/')
-//                 }
-//             )
-//         }
-//     ], (error) => {
-//         if(error) return next(err);
-//         res.redirect(`${baseUrl}`)
-//     })
+            let mailOptions = {
+                from: 'ksugm123',
+                to: 'gennardo@mail.ugm.ac.id',
+                // to: 'brian@kewirausahaansosial.com',
+                subject: `Ajakan Kolaborasi dari ${req.body.name}, email: ${req.body.email}`,
+                text: req.body.message
+            };
+            transporter.sendMail(mailOptions, (error, info) => {
+                done(error, info)
+            });
+        },
+        (info) => {
+            connection.query(
+                'INSERT INTO collaboration (name, email, message) VALUES (?, ?, ?)',
+                [req.body.name, req.body.email, req.body.message],
+                (error, results) => {
+                    if(error) throw error;
+                    else res.send('Ok')
+                }
+            )
+        }
+    ], (error) => {
+        if(error) return next(err);
+        res.send({message: 'Something went wrong, please try again later'})
+    })
 
-// })
+})
 
 module.exports = router;

@@ -24,6 +24,7 @@ initializePassport(passport, async (email) => {
     return selectedUser[0];
 });
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
     cors({
@@ -34,9 +35,9 @@ app.use(
 app.use(flash());
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true,
     cookie: { maxAge: 3600000 },
-    resave: false,
-    saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());

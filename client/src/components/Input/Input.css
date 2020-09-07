@@ -12,3 +12,11 @@
     transform-origin: 100% 50%;
     transform: scaleX(1);
 }
+
+.ck-editor__top {
+    margin-top: 20px !important;
+}
+
+.ck.ck-editor__main>.ck-editor__editable {
+    background: transparent !important;
+}

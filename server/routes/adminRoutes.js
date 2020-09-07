@@ -19,28 +19,15 @@ router.get(`${baseUrl}adminDashboard`, checkAuthenticated, async function(req, r
             function(callback) { connection.query('SELECT * FROM testimonial', callback); },
             function(callback) { connection.query('SELECT * FROM leader_review', callback); },
             function(callback) { connection.query('SELECT * FROM collaboration', callback); },
+            function(callback) { connection.query('SELECT * FROM users', callback); }
         ], function(error, results) {
             if(error) throw error;
-            else res.render('./admin/adminDashboard.ejs', { username: username, role: role, mentors: results[0][0], teamMembers: results[1][0], latestEvents: results[2][0], upcomingEvents: results[3][0], articles: results[4][0], testimonials: results[5][0], leaderReviews: results[6][0], collaboration: results[7][0] });
+            else res.send({ username: username, role: role, data: {mentor: results[0][0], team_member: results[1][0], latest_event: results[2][0], upcoming_event: results[3][0], article: results[4][0], testimonial: results[5][0], leader_review: results[6][0], collaboration: results[7][0], users: results[8][0]} });
         });
     })
 
     
 });
-
-router.get(`${baseUrl}userList`, async function(req, res){
-    req.user.then (data => {
-        if(data.role === "super admin") {
-            connection.query(
-                'SELECT * FROM users WHERE role = "admin"',
-                function(error, results) {
-                    if(error) throw error;
-                    else res.render('./admin/userList.ejs', { users: results });
-                }
-            );
-        } else res.redirect(`${baseUrl}adminDashboard`);
-    })
-})
 
 router.get(`${baseUrl}edit`, function(req, res) {
     connection.query(
@@ -63,7 +50,7 @@ router.get(`${baseUrl}edit`, function(req, res) {
                             results[0].date = `${yyyy}-${mm}-${dd}T${hh}:${m}`;
                         }
                         if (error) throw error;
-                        else res.render('./admin/edit.ejs', { data: results[0], table: req.query.table, id: req.query.id, columns: columns });
+                        else res.send({ data: results[0], table: req.query.table, id: req.query.id, columns: columns });
                     }
                 );
             };
@@ -83,7 +70,7 @@ router.post(`${baseUrl}edit`, async function(req, res) {
         image = req.body.cropped_image
         edit(req, res, date, image)
     } else if(req.body.image) {
-        image = `/assets/images/${req.query.table}/${req.body.image}`;
+        image = req.body.image;
         edit(req, res, date, image)
     } else if(!req.body.image) {
         connection.query(
@@ -106,10 +93,9 @@ router.post(`${baseUrl}delete`, function(req, res) {
         [req.query.table, req.query.id],
         (error, results) => {
             if(error) throw error;
-            else res.redirect('back');
+            else res.send('Ok');
         }
-    );
-            
+    );    
 });
 
 router.get(`${baseUrl}new`, function(req, res) {
@@ -118,7 +104,7 @@ router.get(`${baseUrl}new`, function(req, res) {
         [req.query.table],
         (error, results) => {
             if (error) throw error;
-            else res.render('./admin/new.ejs', { table: req.query.table, columns: results });
+            else res.send({ table: req.query.table, columns: results });
         }
     );
 });
@@ -132,10 +118,10 @@ router.post(`${baseUrl}new`, function(req, res) {
     if (req.body.cropped_image) {
         image = req.body.cropped_image
     } else if(req.body.image) {
-        image = `/assets/images/${req.query.table}/${req.body.image}`;
+        image = req.body.image;
     } else {
-        if(req.query.table !== 'article') image = '/assets/images/default/avatar.svg';
-        else image = '/assets/images/default/test2.jpg';
+        if(req.query.table !== 'article') image = 'avatar.svg';
+        else image = 'test2.jpg';
     }
     add(req, res, date, image)
 });

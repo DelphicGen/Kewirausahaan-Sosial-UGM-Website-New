@@ -1,4 +1,4 @@
-.moreDetailsBtn, .registerBtn {
+.orange-btn, .green-btn, .red-btn {
     border-radius: 5px;
     background-position: center;
     transition: background 0.8s;
@@ -8,19 +8,23 @@
     font-size: 20px;
 }
 
-.registerBtn {
+.green-btn {
     background-color: #228b22;
 }
 
-.moreDetailsBtn {
+.red-btn {
+    background-color: #c40808;
+}
+
+.orange-btn {
     background-color: #FFAD08;
 }
 
-.moreDetailsBtn:hover, .moreDetailsBtn:focus {
+.orange-btn:hover, .orange-btn:focus {
     background: #FFAD08 radial-gradient(circle, transparent 1%, #FFAD08 1%) center/15000%;
 }
 
-.moreDetailsBtn:active {
+.orange-btn:active {
     background-color: #f0d803 !important;
     background-size: 100%;
     transition: background 0s;
