@@ -54,8 +54,7 @@ const Article3 = () => {
                                 </div>
                             </div>
                             <div className="md:w-4/5 mx-auto">
-                                <div ref={detailsRef} className="my-8">{article.full_details}</div>
-
+                                <div ref={detailsRef} className="article3__fullDetails my-8">{article.full_details}</div>
                             </div>
                         </>
                     )

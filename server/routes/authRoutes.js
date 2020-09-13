@@ -133,19 +133,7 @@ router.post(`${baseUrl}forgot`, function(req, res, next) {
       else res.send('Ok');
     });
   });
-
-// router.get(`${baseUrl}reset/:token`, function(req, res) {
-//     connection.query("SELECT * FROM users WHERE resetPasswordToken = ? " ,
-//         req.params.token,
-//         function(err, user) {
-//             if (user.length === 0) {
-//                 req.flash('error', 'Password reset token is invalid or has expired.');
-//                 return res.redirect(`${baseUrl}forgot`);
-//             }
-//             res.render('reset', {user: user[0]});
-//         });
-// });
-
+  
 router.post(`${baseUrl}reset/:token`, function(req, res) {
     async.waterfall([
     function(done) {
