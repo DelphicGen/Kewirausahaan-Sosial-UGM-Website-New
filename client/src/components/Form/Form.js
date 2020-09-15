@@ -10,7 +10,7 @@ const Form = ({history, columns, data, handleFormChange, handleFullDetails, acti
     }
 
     return (
-        <>
+        <form onSubmit={action1}>
             {
                 columns.map(column => {
                     if(column.Field !== 'id') {
@@ -26,10 +26,10 @@ const Form = ({history, columns, data, handleFormChange, handleFullDetails, acti
                     return null;
                 })
             }
-            <Button green={true} text="Save" onClick={action1} />
+            <Button green={true} text="Save" />
             <span className="mr-5"></span>
             <Button red={true} text="Cancel" onClick={cancel} />
-        </>
+        </form>
     )
 }
 

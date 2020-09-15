@@ -87,7 +87,8 @@ const Add = ({history, checkAuthenticated}) => {
         }))
     }
 
-    const save = () => {
+    const save = (e) => {
+        e.preventDefault();
         Axios({
             method: 'POST',
             url: `http://localhost:9000/${table === 'users' ? 'register' : 'new'}?table=${table}`,

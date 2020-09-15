@@ -13,7 +13,7 @@ const AdminDashboard = ({history, checkAuthenticated}) => {
     const [username, setUsername] = useState(null);
     const [role, setRole] = useState('');
     const [data, setData] = useState(null);
-    const [table, setTable] = useState('upcoming_event');
+    const [table, setTable] = useState('');
     const [tableData, setTableData] = useState(null);
     const [columns, setColumns] = useState(null);
 
@@ -71,7 +71,9 @@ const AdminDashboard = ({history, checkAuthenticated}) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+        let table = localStorage.getItem('table');
+        setTable(table ? table : 'upcoming_event');
+    }, [])
 
     useEffect(() => {
         if(data) {
@@ -116,6 +118,7 @@ const AdminDashboard = ({history, checkAuthenticated}) => {
                             className="bg-transparent my-5 border-b-2"
                             value={table}
                             onChange={e => {
+                                localStorage.setItem('table', e.target.value);
                                 setTable(e.target.value)
                             }}
                         >

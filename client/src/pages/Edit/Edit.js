@@ -62,7 +62,8 @@ const Edit = ({history, checkAuthenticated}) => {
         }))
     }
 
-    const save = () => {
+    const save = (e) => {
+        e.preventDefault();
         Axios({
             method: 'POST',
             url: `http://localhost:9000/edit?table=${table}&id=${id}`,

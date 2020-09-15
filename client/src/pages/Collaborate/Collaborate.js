@@ -68,12 +68,12 @@ const Collaborate = () => {
                         <small className="mt-5 block md:hidden">Made with ❤ From Yogyakarta for Indonesia © Kewirausahaan Sosial 2020</small>
                     </div>
 
-                    <div className="collaborate__form w-11/12 sm:w-3/4 md:w-1/3">
+                    <form onSubmit={collab} className="collaborate__form w-11/12 sm:w-3/4 md:w-1/3">
                         <Input name="name" onChange={handleFormChange} type="text" required={true} value={data.name} />
                         <Input name="email" onChange={handleFormChange} type="email" required={true} value={data.email} />
                         <Input name="message" onChange={handleFormChange} type="text" value={data.message} />
-                        <button onClick={collab} className="collaborate__submit border-0 py-2 w-full font-semibold mx-auto">Kirim</button>
-                    </div>
+                        <button type="submit" className="collaborate__submit border-0 py-2 w-full font-semibold mx-auto">Kirim</button>
+                    </form>
                 </div>
             </Container>
         </div>

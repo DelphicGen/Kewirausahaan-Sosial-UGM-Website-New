@@ -110,7 +110,8 @@ router.get(`${baseUrl}new`, function(req, res) {
 });
 
 router.post(`${baseUrl}new`, function(req, res) {
-    let date, image;
+    // console.log(req.query);
+    let date, image, table = req.query.table;
     if(req.body.date) {
         date = req.body.date.replace('T', ' ');
     }
@@ -123,7 +124,7 @@ router.post(`${baseUrl}new`, function(req, res) {
         if(req.query.table !== 'article') image = 'avatar.svg';
         else image = 'test2.jpg';
     }
-    add(req, res, date, image)
+    add(req, res, date, image, table)
 });
 
 module.exports = router;
